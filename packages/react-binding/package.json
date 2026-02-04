@@ -1,0 +1,17 @@
+{
+    "name": "@df/react-binding",
+    "version": "0.0.1",
+    "private": true,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "@df/core": "file:../core"
+    },
+    "peerDependencies": {
+      "react": "^18 || ^19"
+    },
+    "scripts": {
+      "build": "tsc"
+    }
+  }
+  

@@ -1,0 +1,25 @@
+{
+    "name": "@df/mui-adapter",
+    "version": "0.0.1",
+    "private": true,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "@df/core": "file:../core",
+        "@df/react-binding": "file:../react-binding"
+    },
+    "peerDependencies": {
+        "@mui/material": "^5",
+        "react": "^18"
+    },
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.1",
+        "@mui/material": "^7.3.7",
+        "@types/react": "^19.2.11",
+        "react": "^19.2.4"
+    }
+}

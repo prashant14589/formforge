@@ -1,0 +1,22 @@
+{
+    "name": "playground",
+    "private": true,
+    "version": "0.0.1",
+    "dependencies": {
+        "@df/core": "file:../packages/core",
+        "@df/react-binding": "file:../packages/react-binding",
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.1",
+        "@mui/material": "^7.3.7",
+        "react": "^18",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^4",
+        "typescript": "^5",
+        "vite": "^5"
+    },
+    "scripts": {
+        "dev": "vite"
+    }
+}

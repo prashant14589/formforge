@@ -5,6 +5,7 @@
     "dependencies": {
         "@df/core": "file:../packages/core",
         "@df/react-binding": "file:../packages/react-binding",
+        "@df/mui-adapter": "file:../packages/mui-adapter",
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.1",
         "@mui/material": "^7.3.7",

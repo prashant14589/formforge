@@ -1,6 +1,8 @@
 import { FormRenderer } from "@df/react-binding";
 import { FormSchema } from "@df/core";
-import { simpleRenderer } from "./simpleRenderer";
+// import { simpleRenderer } from "./simpleRenderer";
+import { muiRenderer } from "@df/mui-adapter"
+
 
 const schema: FormSchema = {
   schemaVersion: "1.0",
@@ -30,7 +32,7 @@ export default function App() {
 
       <FormRenderer
         schema={schema}
-        renderer={simpleRenderer}
+        renderer={muiRenderer}
       />
     </div>
   );

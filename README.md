@@ -1,60 +1,85 @@
-FormForge
+# FormForge
 
-Schema-driven dynamic form rendering platform with pluggable UI adapters.
+**Schema-driven dynamic form rendering platform with pluggable UI
+adapters.**
 
-FormForge enables applications to generate forms dynamically from API-delivered metadata. It separates business logic from UI rendering, allowing teams to reuse form logic across multiple design systems such as Material UI, Bootstrap, or custom component libraries.
+FormForge enables applications to generate forms dynamically from
+API-delivered metadata. It separates business logic from UI rendering,
+allowing teams to reuse form logic across multiple design systems such
+as Material UI, Bootstrap, or custom component libraries.
 
-✨ Features
+------------------------------------------------------------------------
 
-Schema-driven form generation
+## ✨ Features
 
-Headless form engine
+-   Schema-driven form generation
+-   Headless form engine
+-   React integration layer
+-   Pluggable UI adapter architecture
+-   Type-safe schema contracts
+-   Multi-design system support
+-   Runtime dynamic rendering
+-   Validation support (basic -- expanding)
 
-React integration layer
+------------------------------------------------------------------------
 
-Pluggable UI adapter architecture
-
-Type-safe schema contracts
-
-Multi-design system support
-
-Runtime dynamic rendering
-
-Validation support (basic – expanding)
-
-🧠 Architecture Overview
+## 🧠 Architecture Overview
 
 FormForge follows a layered architecture:
 
-Schema
-   ↓
-Core Engine
-   ↓
-Framework Binding (React)
-   ↓
-UI Adapter (MUI / Bootstrap / Custom)
-   ↓
-Rendered UI
+    Schema
+       ↓
+    Core Engine
+       ↓
+    Framework Binding (React)
+       ↓
+    UI Adapter (MUI / Bootstrap / Custom)
+       ↓
+    Rendered UI
 
-📦 Packages
-Package	Responsibility
-@formforge/core	Headless schema interpreter + state engine
-@formforge/react-binding	React lifecycle integration
-@formforge/mui-adapter	Material UI renderer
-@formforge/bootstrap-adapter	Bootstrap renderer (optional / upcoming)
-🚀 Installation
-Core + React Binding + MUI Adapter
+------------------------------------------------------------------------
+
+## 📦 Packages
+
+  -----------------------------------------------------------------------
+  Package                          Responsibility
+  -------------------------------- --------------------------------------
+  `@formforge/core`                Headless schema interpreter + state
+                                   engine
+
+  `@formforge/react-binding`       React lifecycle integration
+
+  `@formforge/mui-adapter`         Material UI renderer
+
+  `@formforge/bootstrap-adapter`   Bootstrap renderer (optional /
+                                   upcoming)
+  -----------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+## 🚀 Installation
+
+### Install Core + React Binding + MUI Adapter
+
+``` bash
 npm install @formforge/core
 npm install @formforge/react-binding
 npm install @formforge/mui-adapter
+```
 
+Install MUI peer dependencies:
 
-You must also install MUI dependencies:
-
+``` bash
 npm install @mui/material @emotion/react @emotion/styled
+```
 
-📘 Basic Usage
-Step 1 — Define Schema
+------------------------------------------------------------------------
+
+## 📘 Basic Usage
+
+### Step 1 --- Define Schema
+
+``` ts
 import { FormSchema } from "@formforge/core";
 
 const schema: FormSchema = {
@@ -77,8 +102,13 @@ const schema: FormSchema = {
     }
   ]
 };
+```
 
-Step 2 — Use React Renderer
+------------------------------------------------------------------------
+
+### Step 2 --- Render Form
+
+``` tsx
 import { FormRenderer } from "@formforge/react-binding";
 import { muiRenderer } from "@formforge/mui-adapter";
 
@@ -90,11 +120,13 @@ function App() {
     />
   );
 }
+```
 
-🎨 Using Custom Renderer (Simple Renderer Example)
+------------------------------------------------------------------------
 
-FormForge allows rendering using any UI library or custom components.
+## 🎨 Using Custom Renderer (Simple Renderer Example)
 
+``` tsx
 export const simpleRenderer = {
   text: ({ id, props, onChange }) => (
     <div key={id}>
@@ -123,153 +155,141 @@ export const simpleRenderer = {
     </div>
   )
 };
+```
 
+Use it like:
 
-Then use:
-
+``` tsx
 <FormRenderer
   schema={schema}
   renderer={simpleRenderer}
 />
+```
 
-🧩 Adapter Pattern
+------------------------------------------------------------------------
+
+## 🧩 Adapter Pattern
 
 FormForge uses adapter architecture to support multiple UI frameworks.
 
-Each adapter implements a RendererMap:
+Each adapter implements a `RendererMap`:
 
+``` ts
 type RendererMap = {
   [fieldType]: RendererFunction
 }
-
+```
 
 Adapters translate render instructions into UI components.
 
-🏗 Creating Custom Adapter
+------------------------------------------------------------------------
 
-Example structure:
-
-export const myRenderer = {
-  text: ({ id, props, onChange }) => {
-    return <MyInputComponent ... />;
-  }
-};
-
-🧠 Core Engine Responsibilities
+## 🧠 Core Engine Responsibilities
 
 The core engine handles:
 
-Schema interpretation
+-   Schema interpretation
+-   Field state management
+-   Validation handling
+-   Render instruction generation
+-   Business logic isolation
 
-Field state management
+It contains **no UI dependencies**.
 
-Validation handling
+------------------------------------------------------------------------
 
-Render instruction generation
+## 🛠 Development Setup (Monorepo)
 
-Business logic isolation
+    packages/
+       core
+       react-binding
+       mui-adapter
+       bootstrap-adapter
+    playground/
 
-It contains no UI dependencies.
+------------------------------------------------------------------------
 
-🔍 Schema Specification (Current)
-Text Field
-{
-  id: string
-  type: "text"
-  label: string
-  required?: boolean
-}
+### Install Dependencies
 
-Select Field
-{
-  id: string
-  type: "select"
-  label: string
-  options: { label: string, value: string }[]
-}
-
-🛠 Development Setup (Monorepo)
-
-FormForge uses a multi-package architecture.
-
-packages/
-   core
-   react-binding
-   mui-adapter
-   bootstrap-adapter
-playground/
-
-Install Dependencies
+``` bash
 npm install
+```
 
-Build Packages
+------------------------------------------------------------------------
+
+### Build Packages
+
+``` bash
 cd packages/core && npm run build
 cd packages/react-binding && npm run build
 cd packages/mui-adapter && npm run build
+```
 
-Run Playground
+------------------------------------------------------------------------
+
+### Run Playground
+
+``` bash
 cd playground
 npm run dev
+```
 
-🗺 Roadmap
-v0.3
+------------------------------------------------------------------------
 
-Conditional field visibility
+## 🗺 Roadmap
 
-Enhanced validation rules
+### v0.3
 
-v0.4
+-   Conditional field visibility
+-   Enhanced validation rules
 
-Layout and grouping support
+### v0.4
 
-Async validation
+-   Layout and grouping support
+-   Async validation
 
-v0.5
+### v0.5
 
-Visual schema builder
+-   Visual schema builder
+-   Server-driven UI support
 
-Server-driven UI support
+------------------------------------------------------------------------
 
-🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome.
 
 Suggested areas:
 
-New UI adapters
+-   New UI adapters
+-   Validation rule extensions
+-   Schema versioning improvements
+-   Performance optimizations
 
-Validation rule extensions
+------------------------------------------------------------------------
 
-Schema versioning improvements
-
-Performance optimizations
-
-📄 License
+## 📄 License
 
 MIT
 
-💡 Vision
+------------------------------------------------------------------------
 
-FormForge aims to evolve into a full schema-driven UI composition platform enabling teams to build complex dynamic interfaces without duplicating business logic across applications.
+## 💡 Vision
 
-⭐ Why FormForge?
+FormForge aims to evolve into a full schema-driven UI composition
+platform enabling teams to build complex dynamic interfaces without
+duplicating business logic across applications.
 
-FormForge allows teams to define forms as data rather than code, improving scalability, consistency, and maintainability of large frontend applications.
+------------------------------------------------------------------------
 
-📬 Feedback
+## ⭐ Why FormForge?
+
+FormForge allows teams to define forms as data rather than code,
+improving scalability, consistency, and maintainability of large
+frontend applications.
+
+------------------------------------------------------------------------
+
+## 📬 Feedback
 
 Issues and feature requests are welcome via GitHub Issues.
-
-👍 Optional Nice Touch (Add Later)
-
-You can add badges:
-
-Build status
-NPM version
-License
-
-
-
-Which makes FormForge look extremely professional.
-
-Rest well. You did genuinely high-quality engineering today 👏
